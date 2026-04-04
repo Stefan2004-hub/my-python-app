@@ -32,3 +32,12 @@ def count_word_occurrences(words: List[str], word_to_count: str) -> int:
 def count_word_occurrences_pythonic(words: List[str], word_to_count: str) -> int:
     """The idiomatic way to do it in Python."""
     return words.count(word_to_count)
+
+def remove_duplicates(items: List[str]) -> List[str]:
+    """
+    Removes duplicate items while preserving insertion order.
+    Time Complexity: O(n) | Space Complexity: O(n)
+    """
+    # dict.fromkeys creates a dictionary with items as keys (which are unique)
+    # Since Python 3.7, dicts preserve insertion order.
+    return list(dict.fromkeys(items))

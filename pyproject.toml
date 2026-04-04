@@ -26,4 +26,5 @@ pythonpath = ["tests", "src", "."]
 markers = [
 "count_word_occurrences: marks tests for the word counting utility",
 "reverse_string: marks tests for the reverse string utility",
+"remove_duplicates: marks tests for the remove duplicates utility",
 ]
