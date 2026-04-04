@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 
 def reverse_string(text: str) -> str:
@@ -10,12 +10,14 @@ def reverse_string(text: str) -> str:
     # range(start, stop, step) -> similar to your for loop
     for i in range(len(text) - 1, -1, -1):
         reversed_chars.append(text[i])
-    
+
     return "".join(reversed_chars)
+
 
 # The "Pythonic" way (Slicing) - much faster in practice
 def reverse_string_fast(text: str) -> str:
     return text[::-1]
+
 
 def count_word_occurrences(words: List[str], word_to_count: str) -> int:
     """
@@ -25,13 +27,15 @@ def count_word_occurrences(words: List[str], word_to_count: str) -> int:
     # The "Java-like" way (Manual Traversal)
     count = 0
     for word in words:
-        if word == word_to_count: # Python '==' is like Java '.equals()'
+        if word == word_to_count:  # Python '==' is like Java '.equals()'
             count += 1
     return count
+
 
 def count_word_occurrences_pythonic(words: List[str], word_to_count: str) -> int:
     """The idiomatic way to do it in Python."""
     return words.count(word_to_count)
+
 
 def remove_duplicates(items: List[str]) -> List[str]:
     """
@@ -41,3 +45,38 @@ def remove_duplicates(items: List[str]) -> List[str]:
     # dict.fromkeys creates a dictionary with items as keys (which are unique)
     # Since Python 3.7, dicts preserve insertion order.
     return list(dict.fromkeys(items))
+
+
+def concat(strings: Optional[List[Optional[str]]]) -> str:
+    """
+    Concatenates a list of strings end-to-end.
+    Time Complexity: O(n) | Space Complexity: O(n)
+    """
+    # 1. Defensive check (None is Python's null)
+    if not strings:
+        return ""
+
+    # 2. Filter out None elements and join
+    # This is a 'generator expression' - it's like a Java Stream
+    return "".join(s for s in strings if s is not None)
+
+
+def concat_procedural(strings):
+    """
+    Concatenates a list of strings end-to-end.
+    Direct procedural implementation (StringBuilder style).
+    """
+    # 1. Defensive check for None (null) or empty list
+    if strings is None or len(strings) == 0:
+        return ""
+
+    # 2. This list acts as our 'StringBuilder' buffer
+    buffer = []
+
+    for s in strings:
+        # 3. Explicit null check
+        if s is not None:
+            buffer.append(s)
+
+    # 4. Final conversion to string
+    return "".join(buffer)
