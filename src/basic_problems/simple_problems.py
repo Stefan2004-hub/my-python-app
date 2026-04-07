@@ -25,3 +25,20 @@ def two_sum(nums: List[int], target: int) -> List[int]:
 
     # 4. If we reach the end, no solution was found
     raise ValueError("No two sum solution found")
+
+
+def is_palindrome(x: int) -> bool:
+    """
+    Checks whether an integer is a palindrome by reversing its string form.
+    Time Complexity: O(d) | Space Complexity: O(d)
+    """
+    # 1. Quick exit for negative numbers (just like your Java code)
+    if x < 0:
+        return False
+
+    # 2. Convert to string
+    s = str(x)
+
+    # 3. Compare string with its reverse
+    # [::-1] means: start at the end, end at the start, step by -1
+    return s == s[::-1]
