@@ -1,5 +1,3 @@
-from operator import concat
-
 import pytest
 
 from utils import utils
@@ -90,3 +88,24 @@ def test_concat_procedural():
     # Empty/None input cases
     assert utils.concat_procedural(None) == ""
     assert utils.concat_procedural([]) == ""
+
+
+def test_find_smallest_interval_happy_path():
+    numbers = [1, 15, 7, 22, 10]
+    # Smallest interval is between 7 and 10 (3)
+    assert utils.find_smallest_interval(numbers) == 3
+
+
+def test_find_smallest_interval_duplicates():
+    assert utils.find_smallest_interval([4, 2, 4, 10]) == 0
+
+
+def test_find_smallest_interval_null_input():
+    # Equivalent to assertThrows(IllegalArgumentException.class, ...)
+    with pytest.raises(ValueError, match="numbers must not be None"):
+        utils.find_smallest_interval(None)
+
+
+def test_find_smallest_interval_single_element():
+    with pytest.raises(ValueError, match="at least 2 elements"):
+        utils.find_smallest_interval([7])
