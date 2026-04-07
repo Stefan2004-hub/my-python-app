@@ -1,5 +1,3 @@
-from operator import concat
-
 import pytest
 
 from utils import utils

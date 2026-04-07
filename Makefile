@@ -1,6 +1,7 @@
 # Define variables to avoid repetition
 PYTEST = uv run pytest
 UTILS_TEST = tests/test_utils.py
+BASIC_TEST = tests/basic_problems/test_simple_problems.py
 
 .PHONY: test test-q test-file test-last
 
