@@ -42,7 +42,7 @@ def remove_duplicates(items: List[str]) -> List[str]:
     Removes duplicate items while preserving insertion order.
     Time Complexity: O(n) | Space Complexity: O(n)
     """
-    # dict.fromkeys creates a dictionary with items as keys (which are unique)
+    # dict.fromkeys creates a concat_proceduraldictionary with items as keys (which are unique)
     # Since Python 3.7, dicts preserve insertion order.
     return list(dict.fromkeys(items))
 
@@ -80,3 +80,36 @@ def concat_procedural(strings):
 
     # 4. Final conversion to string
     return "".join(buffer)
+
+
+def find_smallest_interval(numbers: List[int]) -> int:
+    """
+    Finds the smallest positive interval between any two numbers.
+    Time Complexity: O(n log n) | Space Complexity: O(n)
+    """
+    # 1. Validation (Equivalent to Java's IllegalArgumentException)
+    if numbers is None:
+        raise ValueError("numbers must not be None")
+
+    if len(numbers) < 2:
+        raise ValueError("numbers must contain at least 2 elements")
+
+    # 2. Sort the list (O(n log n))
+    # sorted() creates a new list, leaving the original untouched
+    sorted_nums = sorted(numbers)
+
+    # 3. Initialize with infinity
+    min_interval = float("inf")
+
+    # 4. Compare adjacent elements (O(n))
+    for i in range(len(sorted_nums) - 1):
+        current_interval = sorted_nums[i + 1] - sorted_nums[i]
+
+        if current_interval < min_interval:
+            min_interval = current_interval
+
+        # Early exit optimization
+        if min_interval == 0:
+            return 0
+
+    return int(min_interval)
